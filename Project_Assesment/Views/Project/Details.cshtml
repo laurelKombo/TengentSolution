@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@model Project_Assesment.Models.Project
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email"> @Html.LabelFor(m=>m.title):</label>
+      <div class="col-sm-10">
+        @Html.EditorFor(m=>m.title)
+         
+      </div>
+    </div>
+   <div class="form-group">
+      <label class="control-label col-sm-2" for="email"> @Html.LabelFor(m=>m.description):</label>
+      <div class="col-sm-10">
+        @Html.DisplayFor(m=>m.description)
+          
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email"> @Html.LabelFor(m=>m.start_date):</label>
+      <div class="col-sm-10">
+        @Html.DisplayFor(m => m.start_date, new { @type="date"})
+         
+    </div>
+
+       <div class="form-group">
+      <label class="control-label col-sm-2" for="email"> @Html.LabelFor(m=>m.end_date):</label>
+      <div class="col-sm-10">
+        @Html.DisplayFor(m => m.end_date, new { @type="date"})
+         
+      </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="email"> @Html.LabelFor(m=>m.end_date):</label>
+      <div class="col-sm-10">
+        @Html.DisplayFor(m => m.end_date, new { @type="date"})
+         
+      </div>
+    </div>
+
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  
+        <div class="container">
+  <h2>Task Table</h2>
+             
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>due_date</th>
+        <th> estimated_hours</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        @foreach(var m in Model.ask_set)
+        {
+             <tr>
+            <td>@m.title</td>
+            <td>@m.due_date</td>
+            <td>@m.estimated_hours</td>
+           
+          </tr>
+          
+      }
+    </tbody>
+  </table>
+</div>

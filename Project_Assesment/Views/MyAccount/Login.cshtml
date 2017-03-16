@@ -1,0 +1,36 @@
+﻿@model Project_Assesment.Models.UserClienSite
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_MyBootstrapLayout.cshtml";
+}
+
+<div class="login">
+    <h1>Login</h1>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+               
+        @Html.TextBoxFor(m => m.Username)
+        @Html.ValidationMessageFor(m => m.Username)
+           
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+
+        <div class="col-md-12">
+            <div class="col-md-5">
+                @*@Html.LabelFor(m => m.RememberMe)*@
+            </div>
+            <div class="col-md-2">
+                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "checkbox" })
+            </div>
+            <div class="col-md-5">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">login</button>
+    }
+</div>

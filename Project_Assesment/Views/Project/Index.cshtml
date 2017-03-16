@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Project_Assesment.Models.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+  <h2>Project Table</h2>
+             
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th> Started Date</th>
+        <th> End Date</th>
+        <th> Is Bilable</th>
+        <th> Is Active</th>
+          <th> Created</th>
+      </tr>
+    </thead>
+    <tbody>
+        @foreach(var m in Model)
+        {
+             <tr>
+            <td>@m.title</td>
+            <td>@m.description</td>
+            <td>@m.start_date</td>
+            <td>@m.start_date</td>
+            <td>@m.end_date</td>
+            <td>@m.is_billable</td>
+            <td>@m.is_active</td>
+            <td>@m.Created</td>
+          </tr>
+          
+      }
+    </tbody>
+  </table>
+</div>
