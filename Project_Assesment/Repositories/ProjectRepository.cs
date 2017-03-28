@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -12,7 +12,7 @@ namespace Project_Assesment.Repositories
     {
         private static string API_URL = "http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/";
 
-        public static IEnumerable<Project> GetAll()
+        public static IEnumerable<Project> GetAll(string Token)
         {
             try
             {
@@ -20,6 +20,8 @@ namespace Project_Assesment.Repositories
                 client.BaseAddress = new Uri(API_URL);
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("Authorization :" + Token));
                 HttpResponseMessage response = client.GetAsync("project").Result;
 
                 if (response.IsSuccessStatusCode)
