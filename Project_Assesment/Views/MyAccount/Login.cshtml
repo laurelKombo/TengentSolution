@@ -1,4 +1,4 @@
-﻿@model Project_Assesment.Models.UserClienSite
+@model Project_Assesment.Models.UserClienSite
 
 @{
     ViewBag.Title = "Login";
@@ -8,11 +8,11 @@
 <div class="login">
     <h1>Login</h1>
 
-    @using (Html.BeginForm())
-    {
+  
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
+        <div id="Projects"></div>
                
         @Html.TextBoxFor(m => m.Username)
         @Html.ValidationMessageFor(m => m.Username)
@@ -32,5 +32,45 @@
         </div>
 
         <button type="submit" class="btn btn-primary btn-block btn-large">login</button>
-    }
+    
 </div>
+ <script src="Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var Projects = $('#Projects');
+
+            $('#btn').click(function () {
+                // Get the username & password from textboxes
+                var username = $('#Username').val();
+                var password = $('#Password').val();
+
+                $.ajax({
+                    type: 'GET',
+                   
+                    url: 'http://userservice.staging.tangentmicroservices.com:80/api-token-auth/',
+                    dataType: 'json',
+                    
+                    headers: {
+                        'Authorization': 'username=' + username + '&password=' + password
+                    },
+                    success: function (data) {
+
+                       
+                        $window.location.href("Project/Index");
+                         
+                    },
+                    complete: function (jqXHR) {
+                        if (jqXHR.status == '401') {
+                            Projects.empty();
+                            Projects.append('<li style="color:red">'
+                                + jqXHR.status + ' : ' + jqXHR.statusText + '</li>')
+                        }
+                    }
+                });
+            });
+
+            $('#btnClear').click(function () {
+                Projects.empty();
+            });
+        });
+    </script>
