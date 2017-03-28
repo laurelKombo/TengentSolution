@@ -34,7 +34,7 @@
         <button type="submit" class="btn btn-primary btn-block btn-large">login</button>
     
 </div>
- <script src="Scripts/jquery-1.10.2.js"></script>
+ 
     <script type="text/javascript">
         $(document).ready(function () {
             var Projects = $('#Projects');
@@ -56,7 +56,7 @@
                     success: function (data) {
 
                        
-                        $window.location.href("Project/Index");
+                        $window.location.href("Project/Index?Token=" + data.token);
                          
                     },
                     complete: function (jqXHR) {
